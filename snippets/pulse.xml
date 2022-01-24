@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <remote  name="pulse"
+           revision="12"
+           fetch="https://github.com/Pulse-OS" />
+
+  <remote  name="gitlab"
+           fetch="https://gitlab.com/" />
+
+  <remote  name="bitbucket"
+           fetch="https://bitbucket.org"
+           revision="sapphire" />
+
+  <remote  name="blobs"
+           fetch="https://github.com/ThankYouMario"
+           revision="sapphire" />
+
+  <!-- Build -->
+  <project path="build/make" name="build" remote="pulse">
+    <copyfile src="core/root.mk" dest="Makefile" />
+    <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
+    <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
+    <linkfile src="core" dest="build/core" />
+    <linkfile src="envsetup.sh" dest="build/envsetup.sh" />
+    <linkfile src="target" dest="build/target" />
+    <linkfile src="tools" dest="build/tools" />
+  </project>
+  <project path="build/soong" name="build_soong" remote="pulse" >
+    <linkfile src="root.bp" dest="Android.bp" />
+    <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
+  </project>
+
+    <!-- Framework -->
+    <project path="frameworks/base" name="frameworks_base" remote="pulse" />
+
+    <!-- Hardware -->
+    <project path="hardware/qcom-caf/wlan" name="hardware_qcom_wlan" remote="pulse" />
+
+    <!-- Packages -->
+    <project path="packages/apps/Settings" name="packages_apps_Settings" remote="pulse" />
+
+    <!-- Prebuilts -->
+    <project path="prebuilts/clang/host/linux-x86/trb_clang" name="varunhardgamer/trb_clang" clone-depth="1" revision="14" remote="gitlab" />
+
+    <!-- System -->
+    <project path="system/core" name="system_core" remote="pulse" />
+
+    <!-- Vendor -->
+    <project path="vendor/pulse" name="vendor_pulse" remote="pulse" />
+
+    <!-- Vendor (AOSPA) -->
+    <project path="vendor/google/gms" name="ThankYouMario/proprietary_vendor_google_gms" remote="bitbucket" />
+    <project path="vendor/google/pixel" name="android_vendor_google_pixel" remote="blobs" />
+
+</manifest>
